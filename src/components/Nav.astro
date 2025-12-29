@@ -1,0 +1,13 @@
+---
+const path = Astro.url.pathname;
+const is = (p: string) => (path === p ? "page" : undefined);
+---
+<nav class="nav">
+  <a class="brand" href="/">rainy / Industrial Design</a>
+  <div class="links">
+    <a href="/" aria-current={is("/")}>Work</a>
+    <a href="/play/" aria-current={is("/play/")}>Play</a>
+    <a href="/resume/" aria-current={is("/resume/")}>Resume</a>
+    <a href="/contact/" aria-current={is("/contact/")}>Contact</a>
+  </div>
+</nav>

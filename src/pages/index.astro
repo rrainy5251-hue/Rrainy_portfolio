@@ -1,0 +1,37 @@
+---
+import Layout from "../components/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { getCollection } from "astro:content";
+
+const projects = (await getCollection("projects"))
+  .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+---
+<Layout title="rainy — Portfolio" description="Industrial Design / Interaction / Service Systems">
+  <section class="hero">
+    <p class="kicker">Industrial Design undergrad applying for graduate programs.</p>
+    <h1>I design beyond objects—building systems that connect people, tech, and real contexts.</h1>
+    <p class="sub">
+      Fill this line with your focus: Industrial AI / AR/VR / service systems / interactive products.
+    </p>
+  </section>
+
+  <section class="grid">
+    {projects.map((p) => (
+      <ProjectCard
+        href={`/project/${p.slug}/`}
+        title={p.data.title}
+        type={p.data.type}
+        year={p.data.year}
+        cover={p.data.cover}
+      />
+    ))}
+  </section>
+
+  <hr />
+  <section style="padding: 10px 0 40px; color: var(--muted);">
+    <div style="max-width:860px; line-height:1.7;">
+      <strong style="color:var(--text);">Contact:</strong>{" "}
+      <a href="mailto:you@email.com">you@email.com</a> · Dubai / Macau / Remote
+    </div>
+  </section>
+</Layout>

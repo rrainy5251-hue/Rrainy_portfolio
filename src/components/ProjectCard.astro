@@ -1,0 +1,16 @@
+---
+const { href, title, type, year, cover } = Astro.props;
+---
+<a class="card" href={href}>
+  <div class="top">
+    <div class="meta">{type}</div>
+    <div class="meta">{year}</div>
+  </div>
+  <h3>{title}</h3>
+  <div class="cta">view project →</div>
+  {cover && (
+    <div class="thumb">
+      <img src={cover} alt={title} loading="lazy" />
+    </div>
+  )}
+</a>
